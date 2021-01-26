@@ -27,7 +27,7 @@ const Movies = require('./models/movies')
 // App
 const app = express()
 app.use(express.json())
-const port = process.env.PORT
+const port = 27017
 
 // create server
 const server = http.createServer(app)

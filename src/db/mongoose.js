@@ -6,4 +6,4 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true); 
 mongoose.set('useUnifiedTopology', true); 
 
-mongoose.connect(process.env.MONGODB_URL)
+mongoose.connect('mongodb+srv://admin:admin@cluster0.ggos9.mongodb.net/SME?retryWrites=true&w=majority')
