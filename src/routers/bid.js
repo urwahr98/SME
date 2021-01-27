@@ -18,11 +18,11 @@ router.post('/pay', (req, res) => {
         data.purpose = 'Movie Payment';
         data.amount = amount;
         data.buyer_name = userdata[0].Fname + " " + userdata[0].Lname;
-        data.redirect_url = 'https://apnashow.herokuapp.com/orders';
+        data.redirect_url = 'https://movie-ticketing-system.herokuapp.com/orders';
         data.email= userdata[0].Email;
         data.phone = '9876543210';
         data.send_email = false;
-        data.webhook = 'https://apnashow.herokuapp.com/orders'
+        data.webhook = 'https://movie-ticketing-system.herokuapp.com/orders'
         data.send_sms = false;
         data.allow_repeated_payments = false; 
 
