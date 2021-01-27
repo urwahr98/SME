@@ -6,8 +6,8 @@
 
 const { MongoClient, ObjectID} = require("mongodb")
 
-const connectionURL = 'mongodb://127.0.0.1:27017'
-//const connectionURL = 'mongodb+srv://admin:admin@cluster0.ggos9.mongodb.net/SME?retryWrites=true&w=majority'
+//const connectionURL = 'mongodb://127.0.0.1:27017'
+const connectionURL = 'mongodb+srv://admin:admin@cluster0.ggos9.mongodb.net/SME?retryWrites=true&w=majority'
 //const databaseName = 'apnaShow'
 const databaseName = 'SME'
 
