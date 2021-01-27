@@ -8,7 +8,8 @@ router.post('/pay', (req, res) => {
     
    
     const amount = req.body.paymentprice;
-    Insta.setKeys(process.env.API_KEY, process.env.AUTH_KEY)
+    //Insta.setKeys(process.env.API_KEY, process.env.AUTH_KEY)
+	Insta.setKeys('test_81de8aedb5641a2b68d6211b7cc', 'test_62906a3786f4cdcccaac0c784c3')
     const data = new Insta.PaymentData();
     Insta.isSandboxMode(true);
    
@@ -18,11 +19,11 @@ router.post('/pay', (req, res) => {
         data.purpose = 'Movie Payment';
         data.amount = amount;
         data.buyer_name = userdata[0].Fname + " " + userdata[0].Lname;
-        data.redirect_url = 'https://apnashow.herokuapp.com/orders';
+        data.redirect_url = 'https://movie-ticketing-system.herokuapp.com/orders';
         data.email= userdata[0].Email;
         data.phone = '9876543210';
         data.send_email = false;
-        data.webhook = 'https://apnashow.herokuapp.com/orders'
+        data.webhook = 'https://movie-ticketing-system.herokuapp.com/orders'
         data.send_sms = false;
         data.allow_repeated_payments = false; 
 
