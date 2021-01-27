@@ -8,7 +8,8 @@ router.post('/pay', (req, res) => {
     
    
     const amount = req.body.paymentprice;
-    Insta.setKeys(process.env.API_KEY, process.env.AUTH_KEY)
+    //Insta.setKeys(process.env.API_KEY, process.env.AUTH_KEY)
+	Insta.setKeys('test_81de8aedb5641a2b68d6211b7cc', 'test_62906a3786f4cdcccaac0c784c3')
     const data = new Insta.PaymentData();
     Insta.isSandboxMode(true);
    
