@@ -95,7 +95,7 @@ app.get('/movies', async (req, res) => {
     let movies 
     const filter = Object.keys(req.query)
     if (Object.keys(req.query)[0] === "search") {
-        movies = await Movies.find({ movieName: Object.values(req.query) })
+        movies = await Movies.find({ movieName: { $regex: new RegExp(Object.values(req.query), "i") } })
     }else{
         
         if (filter.length <1) {
