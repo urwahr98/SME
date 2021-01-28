@@ -171,6 +171,12 @@ app.get('/help', (req, res) => {
     })
 })
 
+app.get('/aboutus', (req, res) => {
+    res.render('aboutus',{
+        
+    })
+})
+
 app.get('*', (req,res) => {
     res.render('404',{
 
