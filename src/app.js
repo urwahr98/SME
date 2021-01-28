@@ -41,7 +41,7 @@ const partialsPath = path.join(__dirname, '../templates/partials')
 
 //Setup handlebars engine and views location
 app.set('view engine', 'hbs')
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', viewPath)
 hbs.registerPartials(partialsPath)
 
@@ -58,7 +58,7 @@ app.use(bid);
 
 
 
-// 
+//
 
 app.get('/', async (req, res) => {
     req.session.loginpage = false
@@ -91,12 +91,12 @@ app.get('/faq', (req, res) => {
 
 app.get('/movies', async (req, res) => {
     req.session.loginpage = false
-    let movies 
+    let movies
     const filter = Object.keys(req.query)
     if (Object.keys(req.query)[0] === "search") {
-        movies = await Movies.find({ movieName: Object.values(req.query) })
+        movies = await Movies.find({ movieName: { $regex: new RegExp(Object.values(req.query), "i") } })
     }else{
-        
+
         if (filter.length <1) {
             movies = await Movies.find({})
         } else {
@@ -107,7 +107,7 @@ app.get('/movies', async (req, res) => {
             }
         }
     }
-    
+
     res.render('movies', {
         userdata: req.session.user,
         loginsuccess: req.session.successlogin,
@@ -132,7 +132,7 @@ app.get('/movies/seats', async (req, res) => {
 app.get('/movies/*', async (req, res) => {
     try {
         res.render('timing', {
-            
+
         })
     } catch (e) {
         res.status(400).send(e)
@@ -156,7 +156,7 @@ app.get('/movies/*', async (req, res) => {
 app.get('/orders', (req, res) => {
     if (req.session.successlogin) {
         res.render('orders', {
-                
+
         })
     } else {
         res.status(400).send("You are not authorize")
@@ -167,13 +167,13 @@ app.get('/orders', (req, res) => {
 
 app.get('/help', (req, res) => {
     res.render('help',{
-        
+
     })
 })
 
 app.get('*', (req,res) => {
     res.render('404',{
-      
+
     })
 })
 
