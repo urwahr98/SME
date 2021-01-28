@@ -36,7 +36,7 @@ const io = socketio(server)
 
 // Define paths for Express config
 const publicDirectionPath = path.join(__dirname, '../public')
-const viewPath = path.join(__dirname,'../templates/views')
+const viewPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
 //Setup handlebars engine and views location
@@ -50,7 +50,7 @@ app.use(express.static(publicDirectionPath))
 
 
 // express session
-app.use(expressSession({secret: 'max', saveUninitialized: false, resave: false}));
+app.use(expressSession({ secret: 'max', saveUninitialized: false, resave: false }));
 
 // Router connection
 app.use(userRouter);
@@ -60,7 +60,7 @@ app.use(bid);
 
 //
 
-app.get('/', async (req, res) => {
+app.get('/', async(req, res) => {
     req.session.loginpage = false
     const movies = await Movies.find({}).limit(4)
     res.render('index', {
@@ -73,7 +73,7 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/offer', (req, res) => {
-    res.render('offer',{
+    res.render('offer', {
         loginsuccess: req.session.successlogin,
         loginpage: req.session.loginpage,
         error: req.session.error
@@ -89,15 +89,26 @@ app.get('/faq', (req, res) => {
     })
 })
 
-app.get('/movies', async (req, res) => {
+app.get('/about-us', (req, res) => {
+    res.render('about-us', {})
+})
+
+app.get('/movies', async(req, res) => {
     req.session.loginpage = false
     let movies
     const filter = Object.keys(req.query)
     if (Object.keys(req.query)[0] === "search") {
+<<<<<<< Updated upstream
         movies = await Movies.find({ movieName: { $regex: new RegExp(Object.values(req.query), "i") } })
     }else{
 
         if (filter.length <1) {
+=======
+        movies = await Movies.find({ movieName: Object.values(req.query) })
+    } else {
+
+        if (filter.length < 1) {
+>>>>>>> Stashed changes
             movies = await Movies.find({})
         } else {
             movies = await Movies.find({ genre: filter })
@@ -118,7 +129,7 @@ app.get('/movies', async (req, res) => {
     })
 })
 
-app.get('/movies/seats', async (req, res) => {
+app.get('/movies/seats', async(req, res) => {
     res.render('seats', {
         userdata: req.session.user,
         loginsuccess: req.session.successlogin,
@@ -129,7 +140,7 @@ app.get('/movies/seats', async (req, res) => {
 
 
 // console.log(req.session.movieName);
-app.get('/movies/*', async (req, res) => {
+app.get('/movies/*', async(req, res) => {
     try {
         res.render('timing', {
 
@@ -166,13 +177,22 @@ app.get('/orders', (req, res) => {
 
 
 app.get('/help', (req, res) => {
+<<<<<<< Updated upstream
     res.render('help',{
+=======
+    res.render('help', {
+>>>>>>> Stashed changes
 
     })
 })
 
+<<<<<<< Updated upstream
 app.get('*', (req,res) => {
     res.render('404',{
+=======
+app.get('*', (req, res) => {
+    res.render('404', {
+>>>>>>> Stashed changes
 
     })
 })
@@ -184,10 +204,10 @@ app.get('*', (req,res) => {
 
 
 let count = 0
-io.on('connection', (socket)=>{
+io.on('connection', (socket) => {
     console.log('New WebSocket connection')
 
-    socket.emit('countUpdated',count)
+    socket.emit('countUpdated', count)
 })
 
 server.listen(port, () => {
