@@ -98,17 +98,11 @@ app.get('/movies', async(req, res) => {
     let movies
     const filter = Object.keys(req.query)
     if (Object.keys(req.query)[0] === "search") {
-<<<<<<< Updated upstream
+
         movies = await Movies.find({ movieName: { $regex: new RegExp(Object.values(req.query), "i") } })
     }else{
 
         if (filter.length <1) {
-=======
-        movies = await Movies.find({ movieName: Object.values(req.query) })
-    } else {
-
-        if (filter.length < 1) {
->>>>>>> Stashed changes
             movies = await Movies.find({})
         } else {
             movies = await Movies.find({ genre: filter })
@@ -177,22 +171,23 @@ app.get('/orders', (req, res) => {
 
 
 app.get('/help', (req, res) => {
-<<<<<<< Updated upstream
-    res.render('help',{
-=======
+
     res.render('help', {
->>>>>>> Stashed changes
 
     })
 })
 
-<<<<<<< Updated upstream
-app.get('*', (req,res) => {
-    res.render('404',{
-=======
+
+app.get('/aboutus', (req, res) => {
+    res.render('aboutus',{
+        
+    })
+})
+
+
 app.get('*', (req, res) => {
     res.render('404', {
->>>>>>> Stashed changes
+
 
     })
 })
