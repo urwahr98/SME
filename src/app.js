@@ -74,6 +74,7 @@ app.get('/', async (req, res) => {
 
 app.get('/offer', (req, res) => {
     res.render('offer',{
+        userdata: req.session.user,
         loginsuccess: req.session.successlogin,
         loginpage: req.session.loginpage,
         error: req.session.error
@@ -156,7 +157,10 @@ app.get('/movies/*', async (req, res) => {
 app.get('/orders', (req, res) => {
     if (req.session.successlogin) {
         res.render('orders', {
-                
+            userdata: req.session.user,
+            loginsuccess: req.session.successlogin,
+            loginpage: req.session.loginpage,
+            error: req.session.error
         })
     } else {
         res.status(400).send("You are not authorize")
@@ -164,16 +168,34 @@ app.get('/orders', (req, res) => {
 
 })
 
+app.get('/profile', (req, res) => {
+    if (req.session.successlogin) {
+        res.render('profile', {
+            userdata: req.session.user,
+            loginsuccess: req.session.successlogin,
+            loginpage: req.session.loginpage,
+            error: req.session.error
+        })
+    } else {
+        res.status(400).send("You are not authorize")
+    }
+})
 
 app.get('/help', (req, res) => {
     res.render('help',{
-        
+        userdata: req.session.user,
+        loginsuccess: req.session.successlogin,
+        loginpage: req.session.loginpage,
+        error: req.session.error
     })
 })
 
 app.get('/aboutus', (req, res) => {
     res.render('aboutus',{
-        
+        userdata: req.session.user,
+        loginsuccess: req.session.successlogin,
+        loginpage: req.session.loginpage,
+        error: req.session.error
     })
 })
 
